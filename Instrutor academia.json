@@ -1,0 +1,1010 @@
+{
+  "name": "Instrutor academia",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "Avaliação física",
+        "formFields": {
+          "values": [
+            {
+              "fieldLabel": "Qual é o seu nome?"
+            },
+            {
+              "fieldLabel": "Idade",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "E-mail",
+              "fieldType": "email"
+            },
+            {
+              "fieldLabel": "Genêro",
+              "fieldType": "radio",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Feminino"
+                  },
+                  {
+                    "option": "Masculino"
+                  }
+                ]
+              }
+            },
+            {
+              "fieldLabel": "Estatura",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Massa corporal",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Braço",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Antebraço",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Coxa",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Perna Medieval",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Cintura",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Abdomen",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Quadril",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Tricipital",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Subescapular",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Suprailiaca",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Perna média",
+              "fieldType": "number"
+            },
+            {
+              "fieldLabel": "Avaliado",
+              "fieldType": "dropdown",
+              "fieldOptions": {
+                "values": [
+                  {
+                    "option": "Avaliado"
+                  },
+                  {
+                    "option": "Não avaliado"
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.6,
+      "position": [
+        -288,
+        176
+      ],
+      "id": "8a1c273e-f007-4852-b30a-3806a363ecac",
+      "name": "On form submission",
+      "webhookId": "9e6ee95c-0466-4d8e-bb01-af4d3b41e856",
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "21b368f8-16fd-4ce7-8141-82014c4104c2",
+              "leftValue": "={{ $json.Sexo }}",
+              "rightValue": "masculino",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        224,
+        0
+      ],
+      "id": "2223017b-dcc1-43fd-b519-f1eed619bb8f",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk",
+          "mode": "list",
+          "cachedResultName": "Avaliação Física - Alunos (Instrutor)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data da Avaliação": "={{ $json.submittedAt }}",
+            "Nome do Aluno": "={{ $json['Qual é o seu nome?'] }}",
+            "Sexo": "={{ $json['Genêro'] }}",
+            "Idade": "={{ $json.Idade }}",
+            "E-mail": "={{ $json['E-mail'] }}",
+            "Peso (kg)": "={{ $json['Massa corporal'] }}",
+            "Altura (m)": "={{ $json.Estatura }}",
+            "Cintura (cm)": "={{ $json.Cintura }}",
+            "Quadril (cm)": "={{ $json.Quadril }}",
+            "Braço Direito (cm)": "={{ $json['Braço'] }}",
+            "Coxa Direita (cm)": "={{ $json.Coxa }}",
+            "Dobra Tríceps (mm)": "={{ $json.Tricipital }}",
+            "Dobra Subescapular (mm)": "={{ $json.Subescapular }}",
+            "Dobra Suprailíaca (mm)": "={{ $json.Suprailiaca }}",
+            "Dobra Abdominal (mm)": "={{ $json.Abdomen }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Data da Avaliação",
+              "displayName": "Data da Avaliação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome do Aluno",
+              "displayName": "Nome do Aluno",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sexo",
+              "displayName": "Sexo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Idade",
+              "displayName": "Idade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-mail",
+              "displayName": "E-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone / WhatsApp",
+              "displayName": "Telefone / WhatsApp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Peso (kg)",
+              "displayName": "Peso (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Altura (m)",
+              "displayName": "Altura (m)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cintura (cm)",
+              "displayName": "Cintura (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quadril (cm)",
+              "displayName": "Quadril (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Braço Direito (cm)",
+              "displayName": "Braço Direito (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Coxa Direita (cm)",
+              "displayName": "Coxa Direita (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Tríceps (mm)",
+              "displayName": "Dobra Tríceps (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Subescapular (mm)",
+              "displayName": "Dobra Subescapular (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Suprailíaca (mm)",
+              "displayName": "Dobra Suprailíaca (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Abdominal (mm)",
+              "displayName": "Dobra Abdominal (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "% Gordura Estimado (%)",
+              "displayName": "% Gordura Estimado (%)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "IMC (kg/m²)",
+              "displayName": "IMC (kg/m²)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "RCQ",
+              "displayName": "RCQ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Massa Gorda (kg)",
+              "displayName": "Massa Gorda (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Massa Magra (kg)",
+              "displayName": "Massa Magra (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status / Observações",
+              "displayName": "Status / Observações",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        368,
+        -320
+      ],
+      "id": "d211bd6c-31be-458a-84ef-4f019814121b",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uGPbQ2XDovoci3bU",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "jsCode": "// Dados de todas as avaliações encontradas para o ID\nconst todasAvaliacoes = $input.all().map(i => i.json);\n\n// A avaliação atual é a última enviada\nconst atual = todasAvaliacoes[todasAvaliacoes.length - 1];\n\n// Identifica se há avaliação anterior\nconst anterior = todasAvaliacoes.length > 1 ? todasAvaliacoes[todasAvaliacoes.length - 2] : null;\n\n// Função auxiliar para calcular Petroski 4 Dobras\nfunction calcularMetricas(item) {\n  if (!item) return null;\n  const peso = Number(item['Peso (kg)'] || item['Body mass'] || 0);\n  let altura = Number(item['Altura (m)'] || item['Height'] || 1);\n  if (altura > 3) altura = altura / 100;\n\n  const idade = Number(item['Idade'] || item['Age'] || 0);\n  const sexo = String(item['Sexo'] || item['Genêro'] || 'Masculino').toLowerCase();\n  \n  const triceps = Number(item['Dobra Tríceps (mm)'] || item['Tricipital'] || 0);\n  const subesc = Number(item['Dobra Subescapular (mm)'] || item['Subscapularis'] || 0);\n  const supra = Number(item['Dobra Suprailíaca (mm)'] || item['Suprailiaca'] || 0);\n  const abdom = Number(item['Dobra Abdominal (mm)'] || item['Abdomen'] || 0);\n  \n  const soma4 = triceps + subesc + supra + abdom;\n  let dc = 0;\n  if (sexo.includes('masc') || sexo === 'male') {\n    dc = 1.10726863 - (0.00081201 * soma4) + (0.00000212 * Math.pow(soma4, 2)) - (0.00041761 * idade);\n  } else {\n    dc = 1.1954713 - (0.0751350 * Math.log10(soma4)) - (0.00041072 * idade);\n  }\n\n  const percGordura = Number((((4.95 / dc) - 4.50) * 100).toFixed(1));\n  const massaGorda = Number((peso * (percGordura / 100)).toFixed(2));\n  const massaMagra = Number((peso - massaGorda).toFixed(2));\n  const imc = (peso / Math.pow(altura, 2)).toFixed(2);\n  const cintura = Number(item['Cintura (cm)'] || item['Waist'] || 0);\n  const quadril = Number(item['Quadril (cm)'] || item['Hip'] || 0);\n  const rcq = quadril > 0 ? (cintura / quadril).toFixed(2) : 0;\n\n  return {\n    data: item['Data da Avaliação'] || item['Carimbo de data/hora'] || 'Atual',\n    peso, cintura, quadril, percGordura, massaMagra, massaGorda, imc, rcq,\n    triceps, subesc, supra, abdom\n  };\n}\n\nconst resAtual = calcularMetricas(atual);\nconst resAnterior = calcularMetricas(anterior);\n\n// Função para formatar variação (Ex: -2.3 kg, +1.1 %)\nfunction diff(atualVal, antVal, unidade = '') {\n  if (!antVal) return '-';\n  const delta = Number((atualVal - antVal).toFixed(2));\n  const sinal = delta > 0 ? '+' : '';\n  const cor = delta < 0 ? '#2e7d32' : (delta > 0 ? '#c62828' : '#666');\n  return `<span style=\"color:${cor}; font-size:11px;\">(${sinal}${delta} ${unidade})</span>`;\n}\n\n// Montagem do HTML com tabela comparativa\nconst html = `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\n    body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 20px; color: #333; }\n    .container { max-width: 680px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }\n    .header { border-bottom: 3px solid #2e7d32; padding-bottom: 10px; margin-bottom: 20px; }\n    table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }\n    th, td { border: 1px solid #e0e0e0; padding: 8px 12px; text-align: center; }\n    th { background: #f0f4f1; color: #2e7d32; }\n    .destaque { font-weight: bold; background: #fafafa; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h2 style=\"margin:0; color:#1b5e20;\">Evolução Antropométrica</h2>\n      <p style=\"margin:5px 0 0 0; font-size:13px; color:#555;\">\n        <strong>Aluno:</strong> ${atual['Nome do Aluno'] || atual[\"What's your name?\"] || 'Aluno'} | <strong>ID:</strong> ${atual['ID do Aluno']}\n      </p>\n    </div>\n\n    <p style=\"font-size:13px;\">\n      ${resAnterior ? `Comparativo entre a avaliação de <b>${resAnterior.data}</b> e a atual (<b>${resAtual.data}</b>):` : 'Esta é a primeira avaliação cadastrada para este ID.'}\n    </p>\n\n    <table>\n      <thead>\n        <tr>\n          <th>Indicador</th>\n          ${resAnterior ? `<th>Anterior (${resAnterior.data})</th>` : ''}\n          <th>Atual (${resAtual.data})</th>\n          ${resAnterior ? '<th>Progresso</th>' : ''}\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td class=\"destaque\">Peso Corporal</td>\n          ${resAnterior ? `<td>${resAnterior.peso} kg</td>` : ''}\n          <td><b>${resAtual.peso} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.peso, resAnterior.peso, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">% de Gordura</td>\n          ${resAnterior ? `<td>${resAnterior.percGordura}%</td>` : ''}\n          <td><b>${resAtual.percGordura}%</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.percGordura, resAnterior.percGordura, '%')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Massa Magra</td>\n          ${resAnterior ? `<td>${resAnterior.massaMagra} kg</td>` : ''}\n          <td><b>${resAtual.massaMagra} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.massaMagra, resAnterior.massaMagra, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Massa Gorda</td>\n          ${resAnterior ? `<td>${resAnterior.massaGorda} kg</td>` : ''}\n          <td><b>${resAtual.massaGorda} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.massaGorda, resAnterior.massaGorda, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Cintura</td>\n          ${resAnterior ? `<td>${resAnterior.cintura} cm</td>` : ''}\n          <td><b>${resAtual.cintura} cm</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.cintura, resAnterior.cintura, 'cm')}</td>` : ''}\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</body>\n</html>`;\n\nconst binaryFile = await this.helpers.prepareBinaryData(\n  Buffer.from(html, 'utf-8'),\n  'index.html',\n  'text/html'\n);\n\nreturn [\n  {\n    json: {\n      ...atual,\n      resAtual,\n      resAnterior,\n      temHistorico: !!resAnterior,\n      html_content: html\n    },\n    binary: {\n      data: binaryFile\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        -96
+      ],
+      "id": "a9d78827-3eea-48e9-b3b2-7a04e1c5e468",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['E-mail'] }}",
+        "subject": "=Relatório de Avaliação física - {{ $json['Nome do Aluno'] }}",
+        "message": "=<p>Olá, <strong>{{ $json['E-mail'] }}</strong>!</p>\n<p>A sua avaliação física recente foi processada. Abaixo encontra-se o resumo da sua evolução em comparação com a avaliação anterior:</p>\n\n<table style=\"border-collapse: collapse; width: 100%; max-width: 500px; font-family: Arial, sans-serif; font-size: 14px;\">\n  <thead>\n    <tr style=\"background-color: #f2f2f2;\">\n      <th style=\"border: 1px solid #ddd; padding: 8px; text-align: left;\">Métrica</th>\n      <th style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\">Anterior</th>\n      <th style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\">Atual</th>\n    </tr>\n  </thead>\n  <tbody>\n    <tr>\n      <td style=\"border: 1px solid #ddd; padding: 8px;\"><strong>% de Gordura</strong></td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\">{{ $json.resAnterior.percGordura }}%</td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center; color: #2e7d32;\"><strong>{{ $json.resAtual.percGordura }}%</strong></td>\n    </tr>\n    <tr>\n      <td style=\"border: 1px solid #ddd; padding: 8px;\"><strong>Massa Magra</strong></td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\">{{ $json.resAnterior.massaMagra }} kg</td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center; color: #2e7d32;\"><strong>{{ $json.resAtual.massaMagra }} kg</strong></td>\n    </tr>\n    <tr>\n      <td style=\"border: 1px solid #ddd; padding: 8px;\"><strong>Peso Total</strong></td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\">{{ $json.resAnterior.peso }} kg</td>\n      <td style=\"border: 1px solid #ddd; padding: 8px; text-align: center;\"><strong>{{ $json.resAtual.peso }} kg</strong></td>\n    </tr>\n  </tbody>\n</table>\n\n<p style=\"margin-top: 20px;\">O relatório completo com todas as dobras cutâneas e gráficos de medidas encontra-se anexo a esta mensagem em formato PDF.</p>",
+        "options": {
+          "attachmentsUi": {
+            "attachmentsBinary": [
+              {}
+            ]
+          },
+          "bccList": ""
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1152,
+        -96
+      ],
+      "id": "24f92fbc-dfd0-4938-b352-ace0784a6367",
+      "name": "Send a message",
+      "webhookId": "7fd5e0ae-d1ed-42f9-b3e2-facd90dd93d4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FjxBj5cTONJHSRWW",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:3000/forms/chromium/convert/html",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "files",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        912,
+        -96
+      ],
+      "id": "ef954f94-4041-4c61-98db-96788f0dba5f",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk",
+          "mode": "list",
+          "cachedResultName": "Avaliação Física - Alunos (Instrutor)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Data da Avaliação": "={{ $('On form submission').item.json.submittedAt }}",
+            "Nome do Aluno": "={{ $('On form submission').item.json['Qual é o seu nome?'] }}",
+            "Sexo": "={{ $('On form submission').item.json['Genêro'] }}",
+            "Idade": "={{ $('On form submission').item.json.Idade }}",
+            "E-mail": "={{ $('On form submission').item.json['E-mail'] }}",
+            "Peso (kg)": "={{ $('On form submission').item.json['Massa corporal'] }}",
+            "Altura (m)": "={{ $('On form submission').item.json.Estatura }}",
+            "Cintura (cm)": "={{ $('On form submission').item.json.Cintura }}",
+            "Quadril (cm)": "={{ $('On form submission').item.json.Quadril }}",
+            "Braço Direito (cm)": "={{ $('On form submission').item.json['Braço'] }}",
+            "Coxa Direita (cm)": "={{ $('On form submission').item.json.Coxa }}",
+            "Dobra Tríceps (mm)": "={{ $('On form submission').item.json.Tricipital }}",
+            "Dobra Subescapular (mm)": "={{ $('On form submission').item.json.Subescapular }}",
+            "Dobra Suprailíaca (mm)": "={{ $('On form submission').item.json.Suprailiaca }}",
+            "Dobra Abdominal (mm)": "={{ $('On form submission').item.json.Abdomen }}",
+            "Status / Observações": "={{ $('On form submission').item.json.Avaliado }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Data da Avaliação",
+              "displayName": "Data da Avaliação",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Nome do Aluno",
+              "displayName": "Nome do Aluno",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Sexo",
+              "displayName": "Sexo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Idade",
+              "displayName": "Idade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "E-mail",
+              "displayName": "E-mail",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone / WhatsApp",
+              "displayName": "Telefone / WhatsApp",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Peso (kg)",
+              "displayName": "Peso (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Altura (m)",
+              "displayName": "Altura (m)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cintura (cm)",
+              "displayName": "Cintura (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quadril (cm)",
+              "displayName": "Quadril (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Braço Direito (cm)",
+              "displayName": "Braço Direito (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Coxa Direita (cm)",
+              "displayName": "Coxa Direita (cm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Tríceps (mm)",
+              "displayName": "Dobra Tríceps (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Subescapular (mm)",
+              "displayName": "Dobra Subescapular (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Suprailíaca (mm)",
+              "displayName": "Dobra Suprailíaca (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Dobra Abdominal (mm)",
+              "displayName": "Dobra Abdominal (mm)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "% Gordura Estimado (%)",
+              "displayName": "% Gordura Estimado (%)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "IMC (kg/m²)",
+              "displayName": "IMC (kg/m²)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "RCQ",
+              "displayName": "RCQ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Massa Gorda (kg)",
+              "displayName": "Massa Gorda (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Massa Magra (kg)",
+              "displayName": "Massa Magra (kg)",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": true
+            },
+            {
+              "id": "Status / Observações",
+              "displayName": "Status / Observações",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        352,
+        368
+      ],
+      "id": "75a45261-b131-435f-aa85-bfb10be248aa",
+      "name": "Append row in sheet1",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uGPbQ2XDovoci3bU",
+          "name": "Google Sheets account"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Dados de todas as avaliações encontradas para o ID\nconst todasAvaliacoes = $input.all().map(i => i.json);\n\n// A avaliação atual é a última enviada\nconst atual = todasAvaliacoes[todasAvaliacoes.length - 1];\n\n// Identifica se há avaliação anterior\nconst anterior = todasAvaliacoes.length > 1 ? todasAvaliacoes[todasAvaliacoes.length - 2] : null;\n\n// Função auxiliar para calcular Petroski 4 Dobras\nfunction calcularMetricas(item) {\n  if (!item) return null;\n  const peso = Number(item['Peso (kg)'] || item['Body mass'] || 0);\n  let altura = Number(item['Altura (m)'] || item['Height'] || 1);\n  if (altura > 3) altura = altura / 100;\n\n  const idade = Number(item['Idade'] || item['Age'] || 0);\n  const sexo = String(item['Sexo'] || item['Genêro'] || 'Masculino').toLowerCase();\n  \n  const triceps = Number(item['Dobra Tríceps (mm)'] || item['Tricipital'] || 0);\n  const subesc = Number(item['Dobra Subescapular (mm)'] || item['Subscapularis'] || 0);\n  const supra = Number(item['Dobra Suprailíaca (mm)'] || item['Suprailiaca'] || 0);\n  const abdom = Number(item['Dobra Abdominal (mm)'] || item['Abdomen'] || 0);\n  \n  const soma4 = triceps + subesc + supra + abdom;\n  let dc = 0;\n  if (sexo.includes('masc') || sexo === 'male') {\n    dc = 1.10726863 - (0.00081201 * soma4) + (0.00000212 * Math.pow(soma4, 2)) - (0.00041761 * idade);\n  } else {\n    dc = 1.1954713 - (0.0751350 * Math.log10(soma4)) - (0.00041072 * idade);\n  }\n\n  const percGordura = Number((((4.95 / dc) - 4.50) * 100).toFixed(1));\n  const massaGorda = Number((peso * (percGordura / 100)).toFixed(2));\n  const massaMagra = Number((peso - massaGorda).toFixed(2));\n  const imc = (peso / Math.pow(altura, 2)).toFixed(2);\n  const cintura = Number(item['Cintura (cm)'] || item['Waist'] || 0);\n  const quadril = Number(item['Quadril (cm)'] || item['Hip'] || 0);\n  const rcq = quadril > 0 ? (cintura / quadril).toFixed(2) : 0;\n\n  return {\n    data: item['Data da Avaliação'] || item['Carimbo de data/hora'] || 'Atual',\n    peso, cintura, quadril, percGordura, massaMagra, massaGorda, imc, rcq,\n    triceps, subesc, supra, abdom\n  };\n}\n\nconst resAtual = calcularMetricas(atual);\nconst resAnterior = calcularMetricas(anterior);\n\n// Função para formatar variação (Ex: -2.3 kg, +1.1 %)\nfunction diff(atualVal, antVal, unidade = '') {\n  if (!antVal) return '-';\n  const delta = Number((atualVal - antVal).toFixed(2));\n  const sinal = delta > 0 ? '+' : '';\n  const cor = delta < 0 ? '#2e7d32' : (delta > 0 ? '#c62828' : '#666');\n  return `<span style=\"color:${cor}; font-size:11px;\">(${sinal}${delta} ${unidade})</span>`;\n}\n\n// Montagem do HTML com tabela comparativa\nconst html = `<!DOCTYPE html>\n<html>\n<head>\n  <meta charset=\"UTF-8\">\n  <style>\n    body { font-family: Arial, sans-serif; background: #fff; margin: 0; padding: 20px; color: #333; }\n    .container { max-width: 680px; margin: auto; border: 1px solid #ddd; border-radius: 8px; padding: 20px; }\n    .header { border-bottom: 3px solid #2e7d32; padding-bottom: 10px; margin-bottom: 20px; }\n    table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 13px; }\n    th, td { border: 1px solid #e0e0e0; padding: 8px 12px; text-align: center; }\n    th { background: #f0f4f1; color: #2e7d32; }\n    .destaque { font-weight: bold; background: #fafafa; }\n  </style>\n</head>\n<body>\n  <div class=\"container\">\n    <div class=\"header\">\n      <h2 style=\"margin:0; color:#1b5e20;\">Evolução Antropométrica</h2>\n      <p style=\"margin:5px 0 0 0; font-size:13px; color:#555;\">\n        <strong>Aluno:</strong> ${atual['Nome do Aluno'] || atual[\"What's your name?\"] || 'Aluno'} | <strong>ID:</strong> ${atual['ID do Aluno']}\n      </p>\n    </div>\n\n    <p style=\"font-size:13px;\">\n      ${resAnterior ? `Comparativo entre a avaliação de <b>${resAnterior.data}</b> e a atual (<b>${resAtual.data}</b>):` : 'Esta é a primeira avaliação cadastrada para este ID.'}\n    </p>\n\n    <table>\n      <thead>\n        <tr>\n          <th>Indicador</th>\n          ${resAnterior ? `<th>Anterior (${resAnterior.data})</th>` : ''}\n          <th>Atual (${resAtual.data})</th>\n          ${resAnterior ? '<th>Progresso</th>' : ''}\n        </tr>\n      </thead>\n      <tbody>\n        <tr>\n          <td class=\"destaque\">Peso Corporal</td>\n          ${resAnterior ? `<td>${resAnterior.peso} kg</td>` : ''}\n          <td><b>${resAtual.peso} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.peso, resAnterior.peso, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">% de Gordura</td>\n          ${resAnterior ? `<td>${resAnterior.percGordura}%</td>` : ''}\n          <td><b>${resAtual.percGordura}%</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.percGordura, resAnterior.percGordura, '%')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Massa Magra</td>\n          ${resAnterior ? `<td>${resAnterior.massaMagra} kg</td>` : ''}\n          <td><b>${resAtual.massaMagra} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.massaMagra, resAnterior.massaMagra, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Massa Gorda</td>\n          ${resAnterior ? `<td>${resAnterior.massaGorda} kg</td>` : ''}\n          <td><b>${resAtual.massaGorda} kg</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.massaGorda, resAnterior.massaGorda, 'kg')}</td>` : ''}\n        </tr>\n        <tr>\n          <td class=\"destaque\">Cintura</td>\n          ${resAnterior ? `<td>${resAnterior.cintura} cm</td>` : ''}\n          <td><b>${resAtual.cintura} cm</b></td>\n          ${resAnterior ? `<td>${diff(resAtual.cintura, resAnterior.cintura, 'cm')}</td>` : ''}\n        </tr>\n      </tbody>\n    </table>\n  </div>\n</body>\n</html>`;\n\nconst binaryFile = await this.helpers.prepareBinaryData(\n  Buffer.from(html, 'utf-8'),\n  'index.html',\n  'text/html'\n);\n\nreturn [\n  {\n    json: {\n      ...atual,\n      resAtual,\n      resAnterior,\n      temHistorico: !!resAnterior,\n      html_content: html\n    },\n    binary: {\n      data: binaryFile\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        672,
+        96
+      ],
+      "id": "09d08b46-64c1-44ec-9d55-b1de988a0ae1",
+      "name": "Code in JavaScript1"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://host.docker.internal:3000/forms/chromium/convert/html",
+        "sendBody": true,
+        "contentType": "multipart-form-data",
+        "bodyParameters": {
+          "parameters": [
+            {
+              "parameterType": "formBinaryData",
+              "name": "files",
+              "inputDataFieldName": "data"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.5,
+      "position": [
+        896,
+        112
+      ],
+      "id": "2244d9a1-4cf3-4b20-bd2d-51078da88e34",
+      "name": "HTTP Request1"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json['E-mail'] }}",
+        "subject": "=Relatório de Avaliação física - {{ $json['Nome do Aluno'] }}",
+        "message": "=<div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px;\">   <div style=\"border-bottom: 3px solid #2e7d32; padding-bottom: 10px;\">     <h2 style=\"color: #1b5e20; margin: 0;\">Relatório de Avaliação Física</h2>     <p style=\"margin: 4px 0 0; color: #666; font-size: 13px;\">Aluno: <b>{{ $('Code in JavaScript').item.json['Nome do Aluno'] }}</b> | Data:{{ $('Code in JavaScript').item.json['Data da Avaliação'] }} </p>   </div>    <table style=\"width: 100%; margin-top: 15px; border-collapse: collapse; text-align: center;\">     <tr>       <td style=\"padding: 10px; background: #f4fbf5; border: 1px solid #dce7dd; border-radius: 6px;\">         <span style=\"font-size: 11px; color: #666; text-transform: uppercase;\">% Gordura Est.</span><br>         <b style=\"font-size: 18px; color: #2e7d32;\">{{ $('Code in JavaScript').item.json.percGordura }}%</b>       </td>       <td style=\"padding: 10px; background: #f4fbf5; border: 1px solid #dce7dd; border-radius: 6px;\">         <span style=\"font-size: 11px; color: #666; text-transform: uppercase;\">Massa Magra</span><br>         <b style=\"font-size: 18px; color: #2e7d32;\">{{ $('Code in JavaScript').item.json.massaMagra }} kg</b>       </td>       <td style=\"padding: 10px; background: #f4fbf5; border: 1px solid #dce7dd; border-radius: 6px;\">         <span style=\"font-size: 11px; color: #666; text-transform: uppercase;\">Massa Gorda</span><br>         <b style=\"font-size: 18px; color: #2e7d32;\">{{ $('Code in JavaScript').item.json.massaGorda }} kg</b>       </td>       <td style=\"padding: 10px; background: #f4fbf5; border: 1px solid #dce7dd; border-radius: 6px;\">         <span style=\"font-size: 11px; color: #666; text-transform: uppercase;\">IMC</span><br>         <b style=\"font-size: 18px; color: #2e7d32;\">{{ $('Code in JavaScript').item.json.imc }}</b>       </td>     </tr>   </table>    <h3 style=\"color: #1b5e20; margin-top: 20px; font-size: 15px;\">Medidas Antropométricas</h3>   <table style=\"width: 100%; border-collapse: collapse; font-size: 13px;\">     <tr style=\"background: #f0f4f1; color: #2e7d32;\">       <th style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: left;\">Circunferências</th>       <th style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\">(cm)</th>       <th style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: left;\">Dobras (Petroski)</th>       <th style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\">(mm)</th>     </tr>     <tr>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Cintura</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Cintura (cm)'] }}</b></td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Tríceps</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Dobra Tríceps (mm)'] }}</b></td>     </tr>     <tr>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Quadril</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Quadril (cm)'] }}</b></td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Subescapular</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b></b>{{ $('Code in JavaScript').item.json['Dobra Subescapular (mm)'] }}</td>     </tr>     <tr>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Braço Direito</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Braço Direito (cm)'] }}</b></td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Suprailíaca</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Dobra Suprailíaca (mm)'] }}</b></td>     </tr>     <tr>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Coxa Direita</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $('Code in JavaScript').item.json['Coxa Direita (cm)'] }}</b></td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0;\">Abdominal</td>       <td style=\"padding: 6px; border: 1px solid #e0e0e0; text-align: right;\"><b>{{ $json['Dobra Abdominal (mm)'] }}</b></td>     </tr>   </table>    <p style=\"margin-top: 25px; text-align: center; font-size: 11px; color: #888;\">     Relatório gerado automaticamente pelo instrutor. Dúvidas? Responda a esta mensagem.   </p> </div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1168,
+        112
+      ],
+      "id": "5a752182-2975-4bc4-9e7c-b496e13638be",
+      "name": "Send a message1",
+      "webhookId": "7fd5e0ae-d1ed-42f9-b3e2-facd90dd93d4",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "FjxBj5cTONJHSRWW",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "documentId": {
+          "__rl": true,
+          "value": "1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk",
+          "mode": "list",
+          "cachedResultName": "Avaliação Física - Alunos (Instrutor)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1000916133,
+          "mode": "list",
+          "cachedResultName": "Respostas ao formulário 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit#gid=1000916133"
+        },
+        "event": "rowAdded",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheetsTrigger",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        0
+      ],
+      "id": "ce989e94-f4f8-4a3d-94fa-5f17446d9dad",
+      "name": "Google Sheets Trigger",
+      "credentials": {
+        "googleSheetsTriggerOAuth2Api": {
+          "id": "5CfUKLRkieuOFyAN",
+          "name": "Google Sheets Trigger account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk",
+          "mode": "list",
+          "cachedResultName": "Avaliação Física - Alunos (Instrutor)",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1000916133,
+          "mode": "list",
+          "cachedResultName": "Respostas ao formulário 1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1ktMC9W6CBCV9zRw_MS3Ojx04rPIE4tOkDOhtYqy8Hrk/edit#gid=1000916133"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "CPF",
+              "lookupValue": "={{ $json.CPF }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -128,
+        0
+      ],
+      "id": "d0540e9b-8a09-4191-8d1c-fd7a1798e924",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "uGPbQ2XDovoci3bU",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        []
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Code in JavaScript1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        []
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Append row in sheet1": {
+      "main": [
+        []
+      ]
+    },
+    "Code in JavaScript1": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request1": {
+      "main": [
+        [
+          {
+            "node": "Send a message1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Get row(s) in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "c1db00af-f20b-4134-aad5-00ab93869398",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a073dd9d81831d985a2750b2c2be957bb2d43500af5f6bced394963229c1db8e"
+  },
+  "nodeGroups": [],
+  "id": "vBNVuXFUqTCjci0r",
+  "tags": []
+}
