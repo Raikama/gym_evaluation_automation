@@ -19,3 +19,46 @@ O projeto elimina o retrabalho de cálculo manual e compilação de fichas de av
 ---
 
 ## 🏗️ Arquitetura da Solução
+
+┌─────────────────────────────────────────────────────────────┐
+│                 1. ENTRADA & PERSISTÊNCIA                  │
+│   Google Forms (Celular/Desktop) ──► Google Sheets Base     │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ (Row Added Trigger)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│             2. ORQUESTRAÇÃO & NEGÓCIO (n8n)                 │
+│                                                             │
+│  [Google Sheets Trigger]                                    │
+│             │                                               │
+│             ▼                                               │
+│  [Get Many Rows] (Busca histórico via 'ID do Aluno')        │
+│             │                                               │
+│             ▼                                               │
+│  [Code Node (JavaScript)]:                                  │
+│    • Petroski 4 Dobras (Densidade Corporal)                 │
+│    • Equação de Siri (% Gordura, Massa Magra/Gorda)         │
+│    • Cálculo de Deltas Temporais (Anterior vs. Atual)       │
+│    • Geração de Estrutura HTML/CSS + Gráficos SVG           │
+│    • Buffer Binário em Memória (prepareBinaryData)          │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ POST multipart/form-data (index.html)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│             3. MICROSSERVIÇO HEADLESS (Docker)              │
+│  Gotenberg Service (Chromium Engine Stateless)              │
+│  ──► Compila HTML/CSS/SVG em PDF binário direto na RAM      │
+└──────────────────────────────┬──────────────────────────────┘
+                               │ Output binário (data)
+                               ▼
+┌─────────────────────────────────────────────────────────────┐
+│                 4. DISPARO & NOTIFICAÇÃO                    │
+│                                                             │
+│  [Gmail Node (Send Email)]:                                 │
+│    ├── Para o Aluno: Resumo da evolução no corpo do e-mail  │
+│    │                 + PDF timbrado anexado                 │
+│    └── Para o Instrutor: Resumo rápido das métricas         │
+│                                                             │
+│  [Módulo Agendado Independente (Schedule Trigger)]:         │
+│    └── Disparo mensal autônomo (alerta de reavaliação 30d)  │
+└─────────────────────────────────────────────────────────────┘
